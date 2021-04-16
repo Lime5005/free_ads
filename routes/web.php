@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -28,3 +29,5 @@ Route::resource('home', HomeController::class);
 Route::middleware('admin')->group(function() {
   Route::resource('users', UserController::class);
 });
+
+Route::resource('posts', PostController::class);

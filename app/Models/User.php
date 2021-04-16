@@ -44,4 +44,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'is_admin' => 'boolean',
     ];
 
+    public function post() {
+        return $this->hadMany('App\Models\Post');
+    }
 }
