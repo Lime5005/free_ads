@@ -109,8 +109,10 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-        if(!(auth()->user()->is_admin) || auth()->user()->id !== $user->id) {
+        if(!(auth()->user()->is_admin)) {
             return redirect('/home')->with('error', 'Unauthorized Page');
+        } else if (auth()->user()->is_admin && $user->is_admin) {
+            return redirect('/users')->with('error', "You are not allowed to delete an admin");
         } else {
             $user->delete();
             return redirect('/users')->with('success', "User's Data is successfully deleted");
