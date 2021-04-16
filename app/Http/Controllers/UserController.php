@@ -62,7 +62,6 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-
         return view('users.show', compact('user'));//Todo: show.blade.php
     }
 
@@ -75,11 +74,10 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        if(auth()->user()->id !== $user->id) {
+        if(!(auth()->user()->is_admin)){
             return redirect('/home')->with('error', 'Unauthorized page');
-        } else {
-            return view('users.edit', compact('user'));
         }
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -99,7 +97,7 @@ class UserController extends Controller
         ]);
         User::whereId($id)->update($validatedData);
 
-        return redirect('/users')->with('success', "User\'s Data is successfully updated");
+        return redirect('/users')->with('success', "User's Data is successfully updated");
     }
 
     /**
@@ -111,11 +109,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-        if(auth()->user()->id !== $user->id) {
+        if(!(auth()->user()->is_admin) || auth()->user()->id !== $user->id) {
             return redirect('/home')->with('error', 'Unauthorized Page');
         } else {
             $user->delete();
-            return redirect('/users')->with('success', "User\'s Data is successfully deleted");
+            return redirect('/users')->with('success', "User's Data is successfully deleted");
         }
     }
 }
