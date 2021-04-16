@@ -17,6 +17,7 @@
       {{ session()->get('error')}}
     </div><br>
   @endif
+  <a href="{{ route('users.create')}}" class="btn btn-info mb-3">Create new user</a>
   <table class="table table-striped">
     <thead>
       <tr>
