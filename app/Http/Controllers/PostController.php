@@ -11,7 +11,8 @@ use Auth;
 
 class PostController extends Controller
 {
-    public function __construct() {
+    public function __construct() 
+    {
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
     /**
@@ -23,7 +24,7 @@ class PostController extends Controller
     {
         $posts = Post::orderBy('created_at', 'desc')->paginate(6);
         $cat = Category::all();
-        return view('post.index')->with(['posts' => $posts, 'cat' => $cat]);
+        return view('posts.index')->with(['posts' => $posts, 'cat' => $cat]);
     }
 
     /**
@@ -61,7 +62,7 @@ class PostController extends Controller
         // Get only the file name with PHP build-in function
         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
         // Get the extension type
-        $extension = $request->file('cover_image')->getClientOriginalExtension();
+        $extension = $request->file('cover_image')->extension();
         // Store as a unique name
         $fileNameToStore = $filename.'_'.time().'_'.$extension;
         $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
@@ -150,7 +151,7 @@ class PostController extends Controller
         // Upload the new image
         $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-        $extension = $request->file('cover_image')->getClientOriginalExtension();
+        $extension = $request->file('cover_image')->extension();
         $fileNameToStore = $filename.'_'.time().'.'.$extension;
         $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
 

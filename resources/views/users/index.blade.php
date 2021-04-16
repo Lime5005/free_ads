@@ -27,6 +27,7 @@
         <td>Email</td>
         <td>Phone Number</td>
         <td colspan="2">Action</td>
+        <td><a href="{{ route('categories.index') }}" class="btn btn-secondary">Category</a></td>
       </tr>
     </thead>
     <tbody>

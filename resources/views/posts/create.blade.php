@@ -14,13 +14,13 @@
     @if ($errors->any())
       <div class="alert alert-danger">
         <ul>
-          @foreach ($error->all() as $error)
+          @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
             @endforeach
         </ul>
       </div><br>
     @endif
-    {!! Form::open(['action' => 'App\Http\Controllers\PostController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+    {!! Form::open(['action' => 'App\Http\Controllers\PostController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data' ]) !!}
       <div class="form-group">
         {{ Form::label('title', 'Title') }}
         {{ Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title']) }}
