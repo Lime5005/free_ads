@@ -24,14 +24,14 @@ Route::get('/', function(){
 
 Auth::routes(['verify' => true]);
 
-// Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('home', HomeController::class);
 
 Route::middleware('admin')->group(function() {
   Route::resource('users', UserController::class);
-  Route::get('posts/category', [CategoryController::class, 'index'])->name('category');
-  Route::post('posts/category/create', [CategoryController::class, 'store'])->name('create.category');
-  Route::delete('posts/category/delete/{id}', [CategoryController::class, 'destroy'])->name('delete.category');
+  // Route `url` can be defined freely, but will be led by controller for view
+  Route::get('posts/categories', [CategoryController::class, 'index'])->name('category');
+  Route::post('posts/categories', [CategoryController::class, 'store'])->name('create.category');
+  Route::delete('posts/categories/{id}', [CategoryController::class, 'destroy'])->name('delete.category');
 });
 
 Route::middleware('auth')->group(function() {
@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function() {
   Route::delete('posts/{id}', [PostController::class, 'destroy']);
 });
 
+// Give some basic routes for these controllers
 Route::resource('posts', PostController::class);
 Route::resource('categories', CategoryController::class);
 

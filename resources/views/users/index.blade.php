@@ -18,6 +18,7 @@
     </div><br>
   @endif
   <a href="{{ route('users.create')}}" class="btn btn-info mb-3">Create new user</a>
+  <a href="{{ route('categories.index') }}" class="btn btn-secondary mb-3 ml-2">Manage Categories</a>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -27,7 +28,6 @@
         <td>Email</td>
         <td>Phone Number</td>
         <td colspan="2">Action</td>
-        <td><a href="{{ route('categories.index') }}" class="btn btn-secondary">Category</a></td>
       </tr>
     </thead>
     <tbody>

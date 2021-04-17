@@ -21,6 +21,8 @@
       </div><br>
     @endif
     {!! Form::open(['action' => 'App\Http\Controllers\PostController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data' ]) !!}
+     <!-- Add CSRF Token -->
+     @csrf
       <div class="form-group">
         {{ Form::label('title', 'Title') }}
         {{ Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title']) }}

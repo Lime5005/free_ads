@@ -64,13 +64,13 @@ class PostController extends Controller
         // Get the extension type
         $extension = $request->file('cover_image')->extension();
         // Store as a unique name
-        $fileNameToStore = $filename.'_'.time().'_'.$extension;
-        $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+        $fileNameToStore = $filename.'_'.time().'.'.$extension;
+        $path = $request->file('cover_image')->storeAs('cover_images/', $fileNameToStore);
         // Create and store a thumb picture
-        $thumbToStore = 'thumb.'.$filename.'_'.time().'.'.$extension;
-        $thumb = Image::make($request->file('cover_image')->getRealPath());
-        $thumb->resize(80, 80);
-        $thumb->save('storage/cover_images/'.$thumbToStore);
+        // $thumbToStore = 'thumb.'.$filename.'_'.time().'.'.$extension;
+        // $thumb = Image::make($request->file('cover_image')->getRealPath());
+        // $thumb->resize(80, 80);
+        // $thumb->save('storage/cover_images/'.$thumbToStore);
 
         // Create a post
         $post = new Post;
