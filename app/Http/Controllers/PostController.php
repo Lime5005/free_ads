@@ -153,14 +153,10 @@ class PostController extends Controller
         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
         $extension = $request->file('cover_image')->extension();
         $fileNameToStore = $filename.'_'.time().'.'.$extension;
-        $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+        $path = $request->file('cover_image')->storeAs('cover_images', $fileNameToStore);
 
         // Delete the old image
-        Storage::delete('public/cover_image'.$post->cover_image);
-        $thumbToStore = 'thumb'.$filename.'_'.time().'.'.$extension;
-        $thumb = Image::make($request->file('cover_image')->getRealPath());
-        $thumb->resize(80, 80);
-        $thumb->save('storage/cover_image'.$thumbToStore);
+        Storage::delete('cover_image'.$post->cover_image);
 
         // Update
         $post->title = $request->input('title');
