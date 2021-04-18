@@ -15,7 +15,7 @@
       </div><br>
   @endif
   <!-- Search bar -->
-  <form action='{{ url("posts/search") }}' method="POST">
+  <form method="POST" action='{{ url("posts/search") }}'>
     {{ csrf_field() }}
     <div class="input-group md-form form-sm form-1 pl-0">
       <div class="input-group-prepend">
@@ -24,7 +24,7 @@
       </div>
         <input type="text" class="form-control my-0 py-1" name="search" placeholder="Product name..." aria-label="Search">
         <span class="input-group-btn">
-          <button class="btn btn-default">Go!</button>
+          <button type="submit" class="btn btn-default">Go!</button>
         </span>
     </div>
   </form>

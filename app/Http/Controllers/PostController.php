@@ -156,7 +156,7 @@ class PostController extends Controller
         $path = $request->file('cover_image')->storeAs('cover_images', $fileNameToStore);
 
         // Delete the old image
-        Storage::delete('cover_image'.$post->cover_image);
+        Storage::delete('cover_images'.$post->cover_image);
 
         // Update
         $post->title = $request->input('title');
@@ -189,7 +189,7 @@ class PostController extends Controller
             return redirect('/posts')->with('error', 'Unauthorized Page');
         }
 
-        Storage::delete('public/cover_image/'.$post->cover_image);
+        Storage::delete('cover_images/'.$post->cover_image);
         $post->delete();
 
         return redirect('/posts')->with('success', 'Ads Removed');

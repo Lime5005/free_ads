@@ -35,6 +35,7 @@ Route::middleware('admin')->group(function() {
 });
 
 Route::middleware('auth')->group(function() {
+  Route::post('posts/search', [PostController::class, 'search']);
   Route::post('posts/create', [PostController::class, 'store']);
   Route::put('posts/{id}', [PostController::class, 'update']);
   Route::delete('posts/{id}', [PostController::class, 'destroy']);
@@ -46,7 +47,6 @@ Route::resource('categories', CategoryController::class);
 
 
 // Public routes
-Route::post('posts', [PostController::class, 'search']);
 Route::post('posts/searchcat', [PostController::class, 'searchcat']);
 Route::get('/posts', [PostController::class, 'index']);
 Route::get('/posts/{id}', [PostController::class, 'show']);
